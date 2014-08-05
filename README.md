@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # tiny_i18n
 
 > The best Grunt plugin ever.
@@ -87,3 +88,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 _(Nothing yet)_
+=======
+grunt_tiny_i18n
+===============
+>>>>>>> 64dc45b58c760c216ad172e5d9473362cf9ef824
