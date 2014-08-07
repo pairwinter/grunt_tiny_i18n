@@ -30,9 +30,36 @@ module.exports = function (grunt) {
 
         // Configuration to be run (and then tested).
         tiny_i18n: {
-            default_options: {
+            angular_options: {
                 options: {
-
+                    js_wrapper:{
+                        name:'angular', // angular,commonjs,json
+                        appName:'snow',
+                        i18nFactoryName:'i18n'
+                    },
+                    js_dest:'tmp/js_i18n_angular/'
+                },
+                src:['test/fixtures/htmls/{,**/}*.html'],
+                i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
+                dest:"./tmp"
+            },
+            commonjs_options: {
+                options: {
+                    js_wrapper:{
+                        name:'commonjs' // angular,commonjs,json
+                    },
+                    js_dest:'tmp/js_i18n_commonjs/'
+                },
+                src:['test/fixtures/htmls/{,**/}*.html'],
+                i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
+                dest:"./tmp"
+            },
+            json_options: {
+                options: {
+                    js_wrapper:{
+                        name:'json' // angular,commonjs,json
+                    },
+                    js_dest:'tmp/js_i18n_json/'
                 },
                 src:['test/fixtures/htmls/{,**/}*.html'],
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
@@ -58,7 +85,8 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'tiny_i18n', 'nodeunit']);
+    grunt.registerTask('test', ['clean', 'tiny_i18n']);
+//    grunt.registerTask('test', ['clean', 'tiny_i18n', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);
