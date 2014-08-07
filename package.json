@@ -1,7 +1,7 @@
 {
-  "name": "tiny_i18n",
+  "name": "grunt_tiny_i18n",
   "description": "The best Grunt plugin ever.",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "homepage": "https://github.com/pairwinter/grunt_tiny_i18n",
   "author": {
     "name": "Damon Liu",
