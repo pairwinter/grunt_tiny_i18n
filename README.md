@@ -1,6 +1,6 @@
 # tiny_i18n
 
-> The best Grunt plugin ever.
+This is a tiny tool that covert the views files with sepecial i18n json data.you could config to generate the i18n json data to js files with the wrapper of Angular.factory or Commonjs or just the unicode json files.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
