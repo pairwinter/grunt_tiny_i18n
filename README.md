@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # tiny_i18n
 
 > The best Grunt plugin ever.
@@ -25,70 +24,56 @@ In your project's Gruntfile, add a section named `tiny_i18n` to the data object 
 
 ```js
 grunt.initConfig({
-  tiny_i18n: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+    tiny_i18n: {
+        options: {
+            js_wrapper:{
+                name:'angular', // angular,commonjs,json
+                appName:'snow',
+                i18nFactoryName:'i18n'
+            },
+            js_dest:'tmp/js_i18n_angular/'
+        },
+        your_options:{
+            src:['test/fixtures/htmls/{,**/}*.html'],
+            i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
+            dest:"./tmp/views"
+        }
+    }
 });
 ```
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.js_wrapper
+Type: `String` or `Object` or undefind
+Default value: `undefind`
 
-A string value that is used to do something with whatever.
+Be used to decide weather covert the i18n json data to js files, it should be used with js_dest.
 
-#### options.punctuation
+#### options.js_dest
 Type: `String`
 Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+The dest to place the i18n js , used with js_wrapper.
 
-### Usage Examples
+### your_options
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+#### src
+Type : `Array<String>`
 
-```js
-grunt.initConfig({
-  tiny_i18n: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+convert the pages with the i18n json files, and put them into separeted folders named with county id, e.g en_US.
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### i18n
+Type : `Array<String>`
 
-```js
-grunt.initConfig({
-  tiny_i18n: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+The i18n json files that to be used.
+
+#### dest
+Type : `String`
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
 _(Nothing yet)_
-=======
-grunt_tiny_i18n
-===============
->>>>>>> 64dc45b58c760c216ad172e5d9473362cf9ef824
+
