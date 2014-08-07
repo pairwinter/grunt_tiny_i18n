@@ -1,0 +1,1 @@
+angular.module('snow').factory('i18n', function () { return {"username":"\\u7528\\u6237\\u540d","userpassword":"\\u7528\\u6237\\u5bc6\\u7801"};});

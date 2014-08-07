@@ -1,0 +1,1 @@
+define(function(require,exports,module){return {"username":"User Name","userpassword":"User Password"};});

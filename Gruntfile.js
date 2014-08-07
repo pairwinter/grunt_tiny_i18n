@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                 },
                 src:['test/fixtures/htmls/{,**/}*.html'],
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
-                dest:"./tmp"
+                dest:"./tmp/views"
             },
             commonjs_options: {
                 options: {
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
                 },
                 src:['test/fixtures/htmls/{,**/}*.html'],
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
-                dest:"./tmp"
+                dest:"./tmp/views/"
             },
             json_options: {
                 options: {
@@ -63,7 +63,7 @@ module.exports = function (grunt) {
                 },
                 src:['test/fixtures/htmls/{,**/}*.html'],
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
-                dest:"./tmp"
+                dest:"./tmp/views"
             }
         },
 
@@ -85,8 +85,8 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'tiny_i18n']);
-//    grunt.registerTask('test', ['clean', 'tiny_i18n', 'nodeunit']);
+//    grunt.registerTask('test', ['clean', 'tiny_i18n']);
+    grunt.registerTask('test', ['clean', 'tiny_i18n', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);
