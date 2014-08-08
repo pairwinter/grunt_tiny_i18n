@@ -34,8 +34,10 @@ grunt.initConfig({
             js_dest:'tmp/js_i18n_angular/'
         },
         your_options:{
-            src:['test/fixtures/htmls/{,**/}*.html'],
             i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
+            expand:true,
+            cwd:'test/fixtures/',
+            src:['htmls/{,**/}*.html'],
             dest:"./tmp/views"
         }
     }
