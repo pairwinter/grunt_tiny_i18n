@@ -39,30 +39,36 @@ module.exports = function (grunt) {
                     },
                     js_dest:'tmp/js_i18n_angular/'
                 },
-                src:['test/fixtures/htmls/{,**/}*.html'],
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
+                expand:true,
+                cwd:'test/fixtures/',
+                src:['htmls/{,**/}*.html'],
                 dest:"./tmp/views"
-            },
-            commonjs_options: {
+            }
+            ,commonjs_options: {
                 options: {
                     js_wrapper:{
                         name:'commonjs' // angular,commonjs,json
                     },
                     js_dest:'tmp/js_i18n_commonjs/'
                 },
-                src:['test/fixtures/htmls/{,**/}*.html'],
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
+                expand:true,
+                cwd:'test/fixtures/',
+                src:['htmls/{,**/}*.html'],
                 dest:"./tmp/views/"
-            },
-            json_options: {
+            }
+            ,json_options: {
                 options: {
                     js_wrapper:{
                         name:'json' // angular,commonjs,json
                     },
                     js_dest:'tmp/js_i18n_json/'
                 },
-                src:['test/fixtures/htmls/{,**/}*.html'],
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
+                expand:true,
+                cwd:'test/fixtures/',
+                src:['htmls/{,**/}*.html'],
                 dest:"./tmp/views"
             }
         },
@@ -85,8 +91,8 @@ module.exports = function (grunt) {
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
-    grunt.registerTask('test', ['clean', 'tiny_i18n']);
-//    grunt.registerTask('test', ['clean', 'tiny_i18n', 'nodeunit']);
+//    grunt.registerTask('test', ['clean', 'tiny_i18n:commonjs_options']);
+    grunt.registerTask('test', ['clean', 'tiny_i18n', 'nodeunit']);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', ['jshint', 'test']);

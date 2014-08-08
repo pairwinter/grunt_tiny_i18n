@@ -23,15 +23,13 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('tiny_i18n', 'The best Grunt plugin ever.', function () {
         // Merge task-specific and/or target-specific options with these defaults.
-        var options = this.options({
-            punctuation: '.',
-            separator: ', '
-        });
+        var options = this.options({});
         // Iterate over all specified file groups.
         this.files.forEach(function (f) {
             var i18nFiles = f.i18n;
             var i18nJsons = {};
             i18nFiles.forEach(function(i18nFilePath){
+                grunt.log.writeln(('Read i18n json File "' + i18nFilePath).blue);
                 var i18nName = path.basename(i18nFilePath, '.json');
                 var json = grunt.file.readJSON(i18nFilePath);
                 i18nJsons[i18nName] = json;
@@ -51,7 +49,9 @@ module.exports = function (grunt) {
                 var fileContent =  grunt.file.read(filepath);
                 _.forEach(i18nJsons,function(i18nJson,i18nName){
                     var resultContent = grunt.template.process(fileContent,{data:i18nJson});
-                    grunt.file.write(f.dest+'/'+i18nName+'/'+filepath, resultContent);
+                    var newfilepath = f.orig.expand?path.relative(f.orig.cwd||'',filepath):filepath;
+                    var destPath = f.orig.dest + path.sep + i18nName + path.sep + newfilepath;
+                    grunt.file.write(destPath, resultContent);
                 });
             });
             if(options.js_wrapper && options.js_dest){
