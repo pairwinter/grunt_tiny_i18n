@@ -73,12 +73,7 @@ module.exports = function (grunt) {
                 var commonjsTemplate = "define(function(require,exports,module){return <%=strJson%>;});";
                 var jsonTemplate="<%=strJson%>";
                 _.forEach(i18nJsons,function(i18nJson,i18nName){
-                    var strJson = [];
-                    _.forEach(i18nJson,function(value,key){
-                        i18nJson[key] = unicode(value);
-                        strJson.push('\"'+key + '\":\"' + unicode(value) + '\"');
-                    });
-                    strJson = "{" + strJson.join(",") +"}";
+                    var strJson = unicode(JSON.stringify(i18nJson));
                     var resultContent = '';
                     var suffix = '.js';
                     if(js_wrapper == 'angular' || js_wrapper.name == 'angular'){

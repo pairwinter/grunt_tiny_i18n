@@ -1,7 +1,7 @@
 {
   "name": "grunt_tiny_i18n",
   "description": "Simple tool for i18n convert",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "homepage": "https://github.com/pairwinter/grunt_tiny_i18n",
   "author": {
     "name": "Damon Liu",
