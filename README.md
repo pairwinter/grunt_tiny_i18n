@@ -26,6 +26,7 @@ In your project's Gruntfile, add a section named `tiny_i18n` to the data object 
 grunt.initConfig({
     tiny_i18n: {
         options: {
+            offset_i18n_name:-1,
             js_wrapper:{
                 name:'angular', // angular,commonjs,json
                 appName:'snow',
@@ -45,6 +46,14 @@ grunt.initConfig({
 ```
 
 ### Options
+
+#### options.offset_i18n_name
+Type:`Number`
+Scope: 1 or -1
+Default vlaue:1
+The position of i18nName.
+1:after the dest, "./tmp/views"+"/"+i18nName+"{,**/}*.html";
+-1:befroe the file, "./tmp/views"+"{,**/}"+i18nName+"/*.html";
 
 #### options.js_wrapper
 Type: `String` or `Object` or undefind
@@ -77,5 +86,5 @@ Type : `String`
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
 
+2014-8-11       v0.2.0      add the new option offset_i18n_name

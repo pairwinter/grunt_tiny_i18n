@@ -28,6 +28,7 @@ module.exports = function (grunt) {
         this.files.forEach(function (f) {
             var i18nFiles = f.i18n;
             var i18nJsons = {};
+            var offsetI18nName = options.offset_i18n_name || 1;
             i18nFiles.forEach(function(i18nFilePath){
                 grunt.log.writeln(('Read i18n json File "' + i18nFilePath).blue);
                 var i18nName = path.basename(i18nFilePath, '.json');
@@ -50,7 +51,16 @@ module.exports = function (grunt) {
                 _.forEach(i18nJsons,function(i18nJson,i18nName){
                     var resultContent = grunt.template.process(fileContent,{data:i18nJson});
                     var newfilepath = f.orig.expand?path.relative(f.orig.cwd||'',filepath):filepath;
-                    var destPath = f.orig.dest + path.sep + i18nName + path.sep + newfilepath;
+
+                    var destPath = f.orig.dest + path.sep;
+                    if(offsetI18nName == 1){
+                        destPath = destPath + i18nName + path.sep + newfilepath;
+                    }else{
+                        destPath = destPath + newfilepath;
+                        var dirname = path.dirname(destPath);
+                        var basename = path.basename(destPath);
+                        destPath = dirname + path.sep + i18nName + path.sep + basename;
+                    }
                     grunt.file.write(destPath, resultContent);
                 });
             });

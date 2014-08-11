@@ -32,6 +32,7 @@ module.exports = function (grunt) {
         tiny_i18n: {
             angular_options: {
                 options: {
+                    offset_i18n_name:1,//[1,-1]
                     js_wrapper:{
                         name:'angular', // angular,commonjs,json
                         appName:'snow',
@@ -47,6 +48,7 @@ module.exports = function (grunt) {
             }
             ,commonjs_options: {
                 options: {
+                    offset_i18n_name:-1,
                     js_wrapper:{
                         name:'commonjs' // angular,commonjs,json
                     },
