@@ -12,8 +12,10 @@ var _ = require('underscore');
 module.exports = function (grunt) {
 
     function unicode(str){
+
         var newStr = str.replace(/[^\u0000-\u007f]/ig,function(s){
-            return "\\u"+(parseInt(s.charCodeAt(0))).toString(16);
+            var value = ("\\u"+(parseInt(s.charCodeAt(0))).toString(16));
+            return value;
         });
         return newStr;
     }
@@ -71,10 +73,12 @@ module.exports = function (grunt) {
                 var commonjsTemplate = "define(function(require,exports,module){return <%=strJson%>;});";
                 var jsonTemplate="<%=strJson%>";
                 _.forEach(i18nJsons,function(i18nJson,i18nName){
+                    var strJson = [];
                     _.forEach(i18nJson,function(value,key){
                         i18nJson[key] = unicode(value);
+                        strJson.push('\"'+key + '\":\"' + unicode(value) + '\"');
                     });
-                    var strJson = JSON.stringify(i18nJson);
+                    strJson = "{" + strJson.join(",") +"}";
                     var resultContent = '';
                     var suffix = '.js';
                     if(js_wrapper == 'angular' || js_wrapper.name == 'angular'){
