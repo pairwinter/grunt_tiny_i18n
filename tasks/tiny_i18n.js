@@ -69,7 +69,7 @@ module.exports = function (grunt) {
             if(options.js_wrapper && options.js_dest){
                 var js_wrapper = options.js_wrapper;
                 var js_dest = options.js_dest;
-                var angularTemplate = "angular.module('<%=appName%>').factory('<%=i18nFactoryName%>', function () { return <%=strJson%>;});";
+                var angularTemplate = "angular.module('<%=appName%>').provider('<%=i18nFactoryName%>', function () { return <%=strJson%>;});";
                 var commonjsTemplate = "define(function(require,exports,module){return <%=strJson%>;});";
                 var jsonTemplate="<%=strJson%>";
                 _.forEach(i18nJsons,function(i18nJson,i18nName){
