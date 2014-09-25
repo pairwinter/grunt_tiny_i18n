@@ -1,6 +1,6 @@
 # grunt_tiny_i18n
 
-This is a tiny tool that covert the views files with sepecial i18n json data.you could config to generate the i18n json data to js files with the wrapper of Angular.factory or Commonjs or just the unicode json files.
+This is a tiny tool that covert the views files with sepecial i18n json data.you could config to generate the i18n json data to js files with the wrapper of Angular.provider or Commonjs or just the unicode json files.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -87,5 +87,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-2014-9-24       v0.2.4      change anguar i18n service from factory to provider.
-2014-8-11       v0.2.0      add the new option offset_i18n_name.
+###2014-9-25       v0.2.6      optimize the code for provider, the provider could offer current language,i18n content,and a function named parseUrl to parse the offer url to ****/LanguageName/*.html(js)
+###2014-9-24       v0.2.4      change anguar i18n service from factory to provider.
+###2014-8-11       v0.2.0      add the new option offset_i18n_name.

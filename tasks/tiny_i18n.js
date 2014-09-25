@@ -11,10 +11,10 @@ var path = require('path');
 var _ = require('underscore');
 module.exports = function (grunt) {
 
-    function unicode(str){
+    function unicode(str) {
 
-        var newStr = str.replace(/[^\u0000-\u007f]/ig,function(s){
-            var value = ("\\u"+(parseInt(s.charCodeAt(0))).toString(16));
+        var newStr = str.replace(/[^\u0000-\u007f]/ig, function (s) {
+            var value = ("\\u" + (parseInt(s.charCodeAt(0))).toString(16));
             return value;
         });
         return newStr;
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
             var i18nFiles = f.i18n;
             var i18nJsons = {};
             var offsetI18nName = options.offset_i18n_name || 1;
-            i18nFiles.forEach(function(i18nFilePath){
+            i18nFiles.forEach(function (i18nFilePath) {
                 grunt.log.writeln(('Read i18n json File "' + i18nFilePath).blue);
                 var i18nName = path.basename(i18nFilePath, '.json');
                 var json = grunt.file.readJSON(i18nFilePath);
@@ -49,15 +49,15 @@ module.exports = function (grunt) {
             });
             srcFiles.forEach(function (filepath) {
                 // Read file source.
-                var fileContent =  grunt.file.read(filepath);
-                _.forEach(i18nJsons,function(i18nJson,i18nName){
-                    var resultContent = grunt.template.process(fileContent,{data:i18nJson});
-                    var newfilepath = f.orig.expand?path.relative(f.orig.cwd||'',filepath):filepath;
+                var fileContent = grunt.file.read(filepath);
+                _.forEach(i18nJsons, function (i18nJson, i18nName) {
+                    var resultContent = grunt.template.process(fileContent, {data: i18nJson});
+                    var newfilepath = f.orig.expand ? path.relative(f.orig.cwd || '', filepath) : filepath;
 
                     var destPath = f.orig.dest + path.sep;
-                    if(offsetI18nName == 1){
+                    if (offsetI18nName == 1) {
                         destPath = destPath + i18nName + path.sep + newfilepath;
-                    }else{
+                    } else {
                         destPath = destPath + newfilepath;
                         var dirname = path.dirname(destPath);
                         var basename = path.basename(destPath);
@@ -66,25 +66,44 @@ module.exports = function (grunt) {
                     grunt.file.write(destPath, resultContent);
                 });
             });
-            if(options.js_wrapper && options.js_dest){
+            if (options.js_wrapper && options.js_dest) {
                 var js_wrapper = options.js_wrapper;
                 var js_dest = options.js_dest;
-                var angularTemplate = "angular.module('<%=appName%>').provider('<%=i18nFactoryName%>', function () { return <%=strJson%>;});";
+                var parseUrl = function (url) {
+                    if (url) {
+                        var last = url.lastIndexOf("/");
+                        if (last > -1) {
+                            var first = url.substring(0, last);
+                            var second = url.substring(last);
+                            return first + language + second;
+                        }
+                    }
+                    return url;
+                }
+                var angularTemplate = "angular.module('<%=appName%>').provider(" +
+                    "'<%=i18nFactoryName%>', " +
+                    "function () { " +
+                        "var i18n = this.i18n = <%=strJson%>;" +
+                        "var language = this.language=\"<%=i18nName%>\";" +
+                        "var parseUrl = this.parseUrl = " + parseUrl.toString() + ";" +
+                        "this.$get = function(){return {i18n:i18n,language:language,parseUrl:parseUrl}}" +
+                    "}" +
+                ");";
                 var commonjsTemplate = "define(function(require,exports,module){return <%=strJson%>;});";
-                var jsonTemplate="<%=strJson%>";
-                _.forEach(i18nJsons,function(i18nJson,i18nName){
+                var jsonTemplate = "<%=strJson%>";
+                _.forEach(i18nJsons, function (i18nJson, i18nName) {
                     var strJson = unicode(JSON.stringify(i18nJson));
                     var resultContent = '';
                     var suffix = '.js';
-                    if(js_wrapper == 'angular' || js_wrapper.name == 'angular'){
-                        resultContent = grunt.template.process(angularTemplate,{data:{appName:js_wrapper.appName,i18nFactoryName:js_wrapper.i18nFactoryName,strJson:strJson}});
-                    }else if(js_wrapper == 'commonjs' || js_wrapper.name == 'commonjs'){
-                        resultContent = grunt.template.process(commonjsTemplate,{data:{strJson:strJson}});
-                    }else{
-                        resultContent = grunt.template.process(jsonTemplate,{data:{strJson:strJson}});
+                    if (js_wrapper == 'angular' || js_wrapper.name == 'angular') {
+                        resultContent = grunt.template.process(angularTemplate, {data: {i18nName:i18nName,appName: js_wrapper.appName, i18nFactoryName: js_wrapper.i18nFactoryName, strJson: strJson}});
+                    } else if (js_wrapper == 'commonjs' || js_wrapper.name == 'commonjs') {
+                        resultContent = grunt.template.process(commonjsTemplate, {data: {strJson: strJson}});
+                    } else {
+                        resultContent = grunt.template.process(jsonTemplate, {data: {strJson: strJson}});
                         suffix = '.json';
                     }
-                    grunt.file.write(js_dest+'/'+i18nName+suffix, resultContent);
+                    grunt.file.write(js_dest + '/' + i18nName + suffix, resultContent);
                 });
             }
             // Print a success message.
