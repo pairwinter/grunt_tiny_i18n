@@ -59,8 +59,6 @@ Type:`Number`
 Scope: 1 or -1
 Default vlaue:1
 The position of i18nName.
-```
-```js
 1:after the dest, "./tmp/views"+"/"+i18nName+"{,**/}*.html";
 -1:befroe the file, "./tmp/views"+"{,**/}"+i18nName+"/*.html";
 ```
@@ -93,10 +91,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 2014-9-26       v0.3.0      optimize the structure of configuration.
 ```
 ```
-2014-9-25       v0.2.6      optimize the code for angular provider, the provider could offer current language,i18n content,and a function named parseUrl to parse the offered url to
-```js
-****/LanguageName/*.html(js)
-```
+2014-9-25       v0.2.6      optimize the code for angular provider, the provider could offer current language,i18n content,and a function named parseUrl to parse the offered url to ****/LanguageName/*.html(js)
 ```
 ```
 2014-9-24       v0.2.4      change anguar i18n service from factory to provider.
