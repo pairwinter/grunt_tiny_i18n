@@ -32,13 +32,13 @@ module.exports = function (grunt) {
         tiny_i18n: {
             angular_options: {
                 options: {
-                    offset_i18n_name:1,//[1,-1]
-                    js_wrapper:{
-                        name:'angular', // angular,commonjs,json
+                    offset:1,//[1,-1]
+                    buildJS:{
+                        type:'angular', // angular,commonjs,json
                         appName:'snow',
-                        i18nFactoryName:'i18n'
-                    },
-                    js_dest:'tmp/js_i18n_angular/'
+                        providerName:'i18n',
+                        dest:'tmp/js_i18n_angular/'
+                    }
                 },
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
                 expand:true,
@@ -48,11 +48,11 @@ module.exports = function (grunt) {
             }
             ,commonjs_options: {
                 options: {
-                    offset_i18n_name:-1,
-                    js_wrapper:{
-                        name:'commonjs' // angular,commonjs,json
-                    },
-                    js_dest:'tmp/js_i18n_commonjs/'
+                    offset:-1,
+                    buildJS:{
+                        type:'commonjs',// angular,commonjs,json
+                        dest:'tmp/js_i18n_commonjs/'
+                    }
                 },
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
                 expand:true,
@@ -62,10 +62,10 @@ module.exports = function (grunt) {
             }
             ,json_options: {
                 options: {
-                    js_wrapper:{
-                        name:'json' // angular,commonjs,json
-                    },
-                    js_dest:'tmp/js_i18n_json/'
+                    buildJS:{
+                        type:'json', // angular,commonjs,json
+                        dest:'tmp/js_i18n_json/'
+                    }
                 },
                 i18n:['test/fixtures/i18n/en_US.json','test/fixtures/i18n/zh_CN.json'],
                 expand:true,
