@@ -7,7 +7,7 @@ you could config to generate the i18n json data to js files with the wrapper of 
 use en_US.json
 convert /user/info.html --> /user/en_US/info.html
 build   en_US.json      --> static/javascript/i18n/en_US.js
-
+```
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
