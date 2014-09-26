@@ -94,5 +94,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ```
 2014-9-24       v0.2.4      change anguar i18n service from factory to provider.
 ```
+```
 2014-8-11       v0.2.0      add the new option offset_i18n_name.
 ```
