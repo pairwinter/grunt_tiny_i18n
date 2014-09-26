@@ -88,8 +88,11 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ```
 2014-9-26       v0.3.0      optimize the structure of configuration.
 ```
+```
 2014-9-25       v0.2.6      optimize the code for provider, the provider could offer current language,i18n content,and a function named parseUrl to parse the offer url to ****/LanguageName/*.html(js)
+```
 ```
 2014-9-24       v0.2.4      change anguar i18n service from factory to provider.
 ```
 2014-8-11       v0.2.0      add the new option offset_i18n_name.
+```
